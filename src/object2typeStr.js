@@ -1,9 +1,16 @@
 import R from "ramda";
 export default (name, obj) => {
-  const result = `type ${name} {
+  const model = `type ${name}Model {
 ${Object.keys(obj).map((name) => `  ${name}: ${obj[name]}`).join("\r\n")}
 }
   `
-
-  return result;
+  const rows = `type ${name}Rows {
+  rows: [${name}Model]
+  count: Int
+}
+  `
+  return `
+${model}
+${rows}
+  `;
 }

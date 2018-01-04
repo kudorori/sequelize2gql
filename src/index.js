@@ -6,8 +6,7 @@ export default (_Sequelise) => {
   const models = _Sequelise.models;
   for(const tableName in models) {
     const table = mappingType(models[tableName]);
-    const typeName = `${tableName.replace(/^\S/, (s) => s.toUpperCase())}Model`;
-    result.push(object2typeStr(typeName, table));
+    result.push(object2typeStr(tableName.replace(/^\S/, (s) => s.toUpperCase()), table));
   }
   return result.join("\n");
 }
